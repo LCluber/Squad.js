@@ -1,0 +1,2 @@
+# Squad.js
+Lightweight chat
