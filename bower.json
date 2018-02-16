@@ -1,0 +1,13 @@
+{
+  "author": "Ludovic Cluber",
+  "name": "squadjs",
+  "license": "MIT",
+  "main": [
+    "dist/squad.js"
+  ],
+  "description": "Web chat library written in Javascript.",
+  "version": "0.1.0",
+  "dependencies": {
+  
+  }
+}

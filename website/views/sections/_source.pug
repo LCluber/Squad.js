@@ -1,0 +1,27 @@
+section( id='source' class='container content-section text-center' )
+  div( class='row' )
+    div( class='col-lg-8 col-lg-offset-2' )
+      h2=t('section.code.h2')
+
+      h3 Node.js server (app.js)
+          
+      p Import chat back-end on the server
+          
+      pre.
+        var squad = require('../dist/server')(server);
+
+      h3 html (index.htm)
+        
+      p Import chat template and css
+        
+      pre.
+        #{'<script src="../dist/squad.js">'}#{'</script>'}
+        #{'<link rel="stylesheet" href="../dist/squad.css">'}
+        #{'<link rel="import" href="../dist/squad.html">'}
+        
+      h3 Javascript (main.js)
+      
+      p Instantiate a chat
+      
+      pre.
+        var chat = new SQUAD.Chat();
