@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "ES6",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors":true,
+    "declaration":true,
+    "declarationDir":"src/ts/build/es6/",
+    "outDir":"src/ts/build/es6/",
+    "rootDir":"src/ts/"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -23,104 +23,96 @@
 * http://squadjs.lcluber.com
 */
 
-(function(global, factory) {
-    typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define([ "exports" ], factory) : factory(global.SQUAD = {});
-})(this, function(exports) {
-    "use strict";
-    var Message = function() {
-        function Message(author, text) {
-            this.author = author;
-            this.time = this.getTime();
-            this.text = text;
-            this.html = this.setHTML();
+class Message {
+    constructor(author, text) {
+        this.author = author;
+        this.time = this.getTime();
+        this.text = text;
+        this.html = this.setHTML();
+    }
+    setHTML() {
+        let c = '<li class="left clearfix">';
+        c += '<div class="chat-body clearfix">';
+        c += '<small class=" text-muted">' + this.time + '</small> ';
+        c += '[' + this.author.name + '] ';
+        c += this.text;
+        c += '</div>';
+        c += '</li>';
+        return c;
+    }
+    getTime() {
+        let d = new Date();
+        return this.pad(d.getHours()) + ':' + this.pad(d.getMinutes()) + ':' + this.pad(d.getSeconds());
+    }
+    pad(n) {
+        return ("0" + n).slice(-2);
+    }
+}
+
+class DOM {
+    constructor() {
+        this.chatBox = this.findDOMElementById('chat');
+        this.messageInput = this.findDOMElementById('message');
+    }
+    getNewMessage() {
+        return this.messageInput.value;
+    }
+    displayMessage(message) {
+        this.chatBox.innerHTML += message;
+        this.scrollToBottom();
+    }
+    scrollToBottom() {
+        this.chatBox.scrollTop = this.chatBox.scrollHeight;
+    }
+    clearMessageInput() {
+        this.messageInput.value = '';
+    }
+    findDOMElementById(id) {
+        return document.getElementById(id);
+    }
+}
+
+class User {
+    constructor(name) {
+        this.setName(name);
+    }
+    setName(name) {
+        if (name) {
+            this.name = name;
         }
-        Message.prototype.setHTML = function() {
-            var c = '<li class="left clearfix">';
-            c += '<div class="chat-body clearfix">';
-            c += '<small class=" text-muted">' + this.time + "</small> ";
-            c += "[" + this.author.name + "] ";
-            c += this.text;
-            c += "</div>";
-            c += "</li>";
-            return c;
-        };
-        Message.prototype.getTime = function() {
-            var d = new Date();
-            return this.pad(d.getHours()) + ":" + this.pad(d.getMinutes()) + ":" + this.pad(d.getSeconds());
-        };
-        Message.prototype.pad = function(n) {
-            return ("0" + n).slice(-2);
-        };
-        return Message;
-    }();
-    var DOM = function() {
-        function DOM() {
-            this.chatBox = this.findDOMElementById("chat");
-            this.messageInput = this.findDOMElementById("message");
+        else {
+            this.name = localStorage.getItem('userName') ? localStorage.getItem('userName') : this.makeId();
         }
-        DOM.prototype.getNewMessage = function() {
-            return this.messageInput.value;
-        };
-        DOM.prototype.displayMessage = function(message) {
-            this.chatBox.innerHTML += message;
-            this.scrollToBottom();
-        };
-        DOM.prototype.scrollToBottom = function() {
-            this.chatBox.scrollTop = this.chatBox.scrollHeight;
-        };
-        DOM.prototype.clearMessageInput = function() {
-            this.messageInput.value = "";
-        };
-        DOM.prototype.findDOMElementById = function(id) {
-            return document.getElementById(id);
-        };
-        return DOM;
-    }();
-    var User = function() {
-        function User(name) {
-            this.setName(name);
+    }
+    makeId() {
+        let text = "";
+        let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 5; i++) {
+            text += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
         }
-        User.prototype.setName = function(name) {
-            if (name) {
-                this.name = name;
-            } else {
-                this.name = localStorage.getItem("userName") ? localStorage.getItem("userName") : this.makeId();
-            }
-        };
-        User.prototype.makeId = function() {
-            var text = "";
-            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            for (var i = 0; i < 5; i++) {
-                text += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-            }
-            localStorage.setItem("userName", text);
-            return text;
-        };
-        return User;
-    }();
-    var Chat = function() {
-        function Chat(userName) {
-            var _this = this;
-            this.socket = io();
-            this.msgMaxLength = 140;
-            this.user = new User(userName);
-            this.DOM = new DOM();
-            this.socket.on("message", function(msg) {
-                _this.DOM.displayMessage(msg);
-            });
+        localStorage.setItem('userName', text);
+        return text;
+    }
+}
+
+class Chat {
+    constructor(userName) {
+        this.socket = io();
+        this.msgMaxLength = 140;
+        this.user = new User(userName);
+        this.DOM = new DOM();
+        this.socket.on('message', (msg) => {
+            this.DOM.displayMessage(msg);
+        });
+    }
+    sendMessage() {
+        let msgContent = this.DOM.getNewMessage();
+        if (msgContent) {
+            let message = new Message(this.user, msgContent);
+            this.socket.emit('message', message.html);
+            this.DOM.clearMessageInput();
         }
-        Chat.prototype.sendMessage = function() {
-            var msgContent = this.DOM.getNewMessage();
-            if (msgContent) {
-                var message = new Message(this.user, msgContent);
-                this.socket.emit("message", message.html);
-                this.DOM.clearMessageInput();
-            }
-        };
-        return Chat;
-    }();
-    exports.Chat = Chat;
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
-});
+    }
+}
+
+export { Chat };

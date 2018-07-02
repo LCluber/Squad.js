@@ -1,2 +1,2 @@
 
-var chat = new SQUAD.Chat();
+var chat = new Squad.Chat();
