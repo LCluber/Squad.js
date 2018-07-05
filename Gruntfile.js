@@ -538,8 +538,8 @@ module.exports = function(grunt){
                       }
                     );
 
-  grunt.registerTask( 'dist',
-                      'build library and website',
+  grunt.registerTask( 'build',
+                      'build for production',
                       function() {
                         //build lib
                         grunt.task.run('lib');
@@ -547,14 +547,14 @@ module.exports = function(grunt){
                         grunt.task.run('website');
                         //build documentation
                         grunt.task.run('doc');
+                        // launch server and watch for changes
+                        grunt.task.run('serve');
                       }
                     );
 
   grunt.registerTask( 'default',
                       'build library, website, launch server, open website and watch for changes.',
                       function() {
-                        //build library and website
-                        grunt.task.run('dist');
                         // launch server and watch for changes
                         grunt.task.run('serve');
                       }

@@ -33,13 +33,10 @@ You just cloned Squad.js : git clone https://github.com/LCluber/Squad.js.git
 
 
 ### Workflow
-- Run **grunt** to build the app and serve the website.
-- Use **grunt --help** to see the list of tasks.
+  - Run **grunt** to serve the website. (http://localhost:3010/)
+  - Run **grunt build** to build the library and serve the website.
+  - Use **grunt --help** to see the list of tasks.
 
-- Start the server :
-  - Run **npm start**
-  - Go to **http://localhost:3010/** to test the app.
-
-- Set node environment if needed :
-  - Run **export NODE_ENV=development**
-  - Or **export NODE_ENV=production**
+  - Set node environment if needed :
+    - Run **export NODE_ENV=development**
+    - Or **export NODE_ENV=production**
