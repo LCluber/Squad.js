@@ -9,16 +9,6 @@ You just cloned Squad.js : git clone https://github.com/LCluber/Squad.js.git
   - **sudo apt-get install -y nodejs**
 
 
-### Install ruby :
-  - Windows : **http://rubyinstaller.org/downloads/**
-  - OSX : already installed
-  - Linux : run **sudo apt-get install ruby-full**
-
-
-### Install sass :
-  - Run **gem install sass**
-
-
 ### Install grunt :
   - Run **npm update -g npm** to update npm
   - Run **npm install -g grunt-cli**
@@ -33,7 +23,7 @@ You just cloned Squad.js : git clone https://github.com/LCluber/Squad.js.git
 
 
 ### Workflow
-  - Run **grunt** to serve the website. (http://localhost:3010/)
+  - Run **grunt** to serve the website. (http://localhost:3000/)
   - Run **grunt build** to build the library and serve the website.
   - Use **grunt --help** to see the list of tasks.
 

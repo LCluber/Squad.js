@@ -1,0 +1,17 @@
+
+div( class="col-xs-4 absolute-wrapper")
+  div( class="panel panel-default panel-transparent" )
+    div( class="panel-heading")
+      span( class="glyphicon glyphicon-comment") 
+    div( class="panel-body panel-resizable minHeight scrollbarAuto" id="Squad" )
+      ul( class="chat" id="chat")
+    div( class="panel-footer")
+      form( class="form-inline")
+        div( class="form-group row")
+          //- label(class="col-sm-2 col-form-label" for="message") @users/
+          div( class="col-sm-12")
+            div( class="input-group")
+              input( class="form-control" id="message" maxlength="140" )
+              span( class="input-group-btn")
+                button( type="button" class="btn btn-primary" onclick="chat.sendMessage()") 
+                  span( class="glyphicon glyphicon-send")

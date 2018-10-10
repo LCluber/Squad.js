@@ -1,10 +1,6 @@
 ## Synopsis
 
-Squad.js is a lightweight web chat written in Typescript.
-
-## Code Example
-
- [See a basic example on the dedicated website](http://squadjs.lcluber.com/#source).
+[Squad.js](http://squadjs.lcluber.com) is a lightweight web chat written in Typescript.
 
 ## Motivation
 
@@ -12,11 +8,18 @@ The purpose of this library is to provide a simple and easy way to chat on a web
 
 ## Installation
 
-To use **Squad.js** download it **[here](http://squadjs.lcluber.com/#download)** and learn how to use it **[there](http://squadjs.lcluber.com/#source)**.
+```bash
+$ npm install @lcluber/squadjs
+```
+Or download it **[here](http://squadjs.lcluber.com/#download)**.
+
+## Usage
+
+Learn how to use it **[here](http://squadjs.lcluber.com/#source)**.
 
 ## API Reference
 
-[See the documentation on the dedicated website](http://squadjs.lcluber.com/doc/).
+Read the documentation **[here](http://squadjs.lcluber.com/doc/)**.
 
 ## Tests
 
@@ -31,7 +34,7 @@ To contribute you can clone the project on **[GitHub](https://github.com/LCluber
 
 MIT License
 
-Copyright (c) 2018 Ludovic CLUBER
+Copyright (c) 2015 Ludovic CLUBER
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

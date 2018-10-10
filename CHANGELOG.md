@@ -1,3 +1,8 @@
+Version 0.1.2 (October 10th 2018)
+-----------------------------
+ * Squad.js published on NPM at @lcluber/squadjs.
+ * Updated README.md with NPM installation procedure.
+
 Version 0.1.1 (June 02nd 2018)
 -----------------------------
  * Documentation automatically generated in /doc folder
